@@ -1,216 +1,357 @@
-
+```html
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Página de Pruebas</title>
+    <title>Portal de Pruebas Automatizadas</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #333;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .container {
-            width: 80%;
-            max-width: 800px;
-            margin: 30px auto;
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-
-        button {
-            padding: 10px 20px;
-            margin-right: 10px;
-            cursor: pointer;
-        }
-
-        #resultado {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #eee;
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="estilos.css">
 </head>
 
 <body>
 
-<header>
-    <h1 id="titulo">Página de Pruebas Automatizadas</h1>
-    <p id="subtitulo">HTML para pruebas Selenium / Java / JUnit</p>
-</header>
+    <header>
+        <h1 id="titulo">Portal de Pruebas Automatizadas</h1>
 
-<div class="container">
+        <p>
+            Sitio web creado para realizar pruebas con
+            Selenium, Java, JUnit y ChromeDriver.
+        </p>
+    </header>
 
-    <h2>Formulario de prueba</h2>
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#formulario">Formulario</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#tabla">Tabla</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
 
-    <form id="formularioPrueba">
+    <main>
 
-        <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input
-                type="text"
-                id="nombre"
-                name="nombre"
-                placeholder="Ingrese su nombre">
-        </div>
+        <section id="inicio" class="card">
 
-        <div class="form-group">
-            <label for="correo">Correo electrónico</label>
-            <input
-                type="email"
-                id="correo"
-                name="correo"
-                placeholder="correo@ejemplo.com">
-        </div>
+            <h2>Bienvenido</h2>
 
-        <div class="form-group">
-            <label for="opcion">Seleccione una opción</label>
+            <p>
+                Esta página contiene diferentes elementos HTML
+                para realizar pruebas automatizadas.
+            </p>
 
-            <select id="opcion" name="opcion">
-                <option value="">-- Seleccione --</option>
-                <option value="opcion1">Opción 1</option>
-                <option value="opcion2">Opción 2</option>
-                <option value="opcion3">Opción 3</option>
-            </select>
-        </div>
+            <p>
+                Puedes utilizarla para probar navegación,
+                formularios, botones, tablas, alertas y
+                elementos dinámicos.
+            </p>
 
-        <button
-            type="button"
-            id="btnEnviar"
-            onclick="mostrarResultado()">
-            Enviar
-        </button>
+            <button id="btnMensaje" onclick="mostrarMensaje()">
+                Mostrar mensaje
+            </button>
 
-        <button
-            type="button"
-            id="btnLimpiar"
-            onclick="limpiarFormulario()">
-            Limpiar
-        </button>
+            <p id="mensaje"></p>
 
-    </form>
-
-    <div id="resultado">
-        <strong id="mensaje"></strong>
-    </div>
-
-    <hr>
-
-    <h2>Elementos para pruebas</h2>
-
-    <button id="btnAlerta" onclick="mostrarAlerta()">
-        Mostrar alerta
-    </button>
-
-    <button id="btnConfirmacion" onclick="mostrarConfirmacion()">
-        Mostrar confirmación
-    </button>
-
-    <button id="btnCambioTexto" onclick="cambiarTexto()">
-        Cambiar texto
-    </button>
-
-    <p id="textoPrueba">
-        Este texto puede ser modificado mediante Selenium.
-    </p>
-
-</div>
-
-<script>
-
-    function mostrarResultado() {
-
-        const nombre = document.getElementById("nombre").value;
-        const correo = document.getElementById("correo").value;
-        const opcion = document.getElementById("opcion").value;
-
-        const resultado = document.getElementById("resultado");
-        const mensaje = document.getElementById("mensaje");
-
-        if (nombre === "" || correo === "" || opcion === "") {
-
-            mensaje.innerText =
-                "Debe completar todos los campos.";
-
-        } else {
-
-            mensaje.innerText =
-                "Formulario enviado correctamente. " +
-                "Nombre: " + nombre +
-                " | Correo: " + correo +
-                " | Opción: " + opcion;
-        }
-
-        resultado.style.display = "block";
-    }
+        </section>
 
 
-    function limpiarFormulario() {
+        <section id="formulario" class="card">
 
-        document.getElementById("formularioPrueba").reset();
+            <h2>Formulario de prueba</h2>
 
-        document.getElementById("resultado").style.display = "none";
-    }
+            <form id="formularioPrueba">
 
+                <label for="nombre">
+                    Nombre
+                </label>
 
-    function mostrarAlerta() {
-
-        alert("Esta es una alerta de prueba.");
-    }
-
-
-    function mostrarConfirmacion() {
-
-        const respuesta =
-            confirm("¿Desea continuar con la prueba?");
-
-        if (respuesta) {
-            alert("El usuario seleccionó ACEPTAR.");
-        } else {
-            alert("El usuario seleccionó CANCELAR.");
-        }
-    }
+                <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    placeholder="Ingrese su nombre">
 
 
-    function cambiarTexto() {
+                <label for="correo">
+                    Correo electrónico
+                </label>
 
-        document.getElementById("textoPrueba").innerText =
-            "El texto fue cambiado correctamente mediante JavaScript.";
-    }
+                <input
+                    type="email"
+                    id="correo"
+                    name="correo"
+                    placeholder="correo@ejemplo.com">
 
-</script>
+
+                <label for="tipo">
+                    Tipo de usuario
+                </label>
+
+                <select id="tipo" name="tipo">
+
+                    <option value="">
+                        Seleccione una opción
+                    </option>
+
+                    <option value="cliente">
+                        Cliente
+                    </option>
+
+                    <option value="usuario">
+                        Usuario
+                    </option>
+
+                    <option value="administrador">
+                        Administrador
+                    </option>
+
+                </select>
+
+
+                <div class="checkbox">
+
+                    <input
+                        type="checkbox"
+                        id="acepta"
+                        name="acepta">
+
+                    <label for="acepta">
+                        Acepto los términos y condiciones
+                    </label>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="btnEnviar"
+                    onclick="enviarFormulario()">
+
+                    Enviar
+
+                </button>
+
+
+                <button
+                    type="button"
+                    id="btnLimpiar"
+                    onclick="limpiarFormulario()">
+
+                    Limpiar
+
+                </button>
+
+            </form>
+
+            <div id="resultado"></div>
+
+        </section>
+
+
+        <section id="servicios" class="card">
+
+            <h2>Servicios</h2>
+
+            <div class="servicios">
+
+                <article>
+
+                    <h3>Monitoreo</h3>
+
+                    <p>
+                        Pruebas de monitoreo y observabilidad.
+                    </p>
+
+                    <button id="btnMonitoreo">
+                        Ver información
+                    </button>
+
+                </article>
+
+
+                <article>
+
+                    <h3>Automatización</h3>
+
+                    <p>
+                        Automatización mediante Selenium y Java.
+                    </p>
+
+                    <button id="btnAutomatizacion">
+                        Ejecutar prueba
+                    </button>
+
+                </article>
+
+
+                <article>
+
+                    <h3>Bases de datos</h3>
+
+                    <p>
+                        Pruebas de conexión y consultas.
+                    </p>
+
+                    <button id="btnBaseDatos">
+                        Consultar
+                    </button>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <section id="tabla" class="card">
+
+            <h2>Tabla de usuarios</h2>
+
+            <table id="tablaUsuarios">
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Perfil</th>
+                        <th>Estado</th>
+                        <th>Acción</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>001</td>
+                        <td>Juan Pérez</td>
+                        <td>Administrador</td>
+                        <td>Activo</td>
+
+                        <td>
+                            <button class="btnTabla">
+                                Ver
+                            </button>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>002</td>
+                        <td>María González</td>
+                        <td>Usuario</td>
+                        <td>Activo</td>
+
+                        <td>
+                            <button class="btnTabla">
+                                Ver
+                            </button>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>003</td>
+                        <td>Pedro Soto</td>
+                        <td>Cliente</td>
+                        <td>Inactivo</td>
+
+                        <td>
+                            <button class="btnTabla">
+                                Ver
+                            </button>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>Pruebas JavaScript</h2>
+
+            <button
+                id="btnAlerta"
+                onclick="mostrarAlerta()">
+
+                Mostrar alerta
+
+            </button>
+
+
+            <button
+                id="btnConfirmacion"
+                onclick="mostrarConfirmacion()">
+
+                Mostrar confirmación
+
+            </button>
+
+
+            <button
+                id="btnCambio"
+                onclick="cambiarTexto()">
+
+                Cambiar texto
+
+            </button>
+
+
+            <p id="textoDinamico">
+                Texto original.
+            </p>
+
+        </section>
+
+
+        <section id="contacto" class="card">
+
+            <h2>Contacto</h2>
+
+            <p>
+                Página de pruebas para automatización.
+            </p>
+
+            <p>
+                Email:
+                <strong id="emailContacto">
+                    pruebas@ejemplo.com
+                </strong>
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 Portal de Pruebas Automatizadas
+        </p>
+
+        <p>
+            Selenium | Java | JUnit | ChromeDriver
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
 
 </body>
+
 </html>
 ```
